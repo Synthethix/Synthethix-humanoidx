@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Synthetix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6EE7B7, #3B82F6);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #3B82F6, #6EE7B7);
+        }
+
+        .updates-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .updates-container::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 4px;
+        }
+
+        .updates-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6EE7B7, #3B82F6);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .updates-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #3B82F6, #6EE7B7);
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(10, 10, 10, 0.8);
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 100px auto 0;
+            padding: 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .dashboard-card {
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #6EE7B7;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: #3B82F6;
+        }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6EE7B7, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+
+        .card-description {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 200px;
+            margin-top: 15px;
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', 'Arial Black', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6EE7B7, #3B82F6, #6EE7B7);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: auto;
+            padding-right: 30px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3B82F6;
+        }
+
+        .nav-links a.active {
+            color: #3B82F6;
+                    .updates-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .updates-container::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 4px;
+        }
+
+        .updates-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6EE7B7, #3B82F6);
+            border-radius: 4px;
+        }
+
+        .update-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 8px;
+            border-left: 4px solid #3B82F6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .update-item:not(:last-child) {
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .update-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(110, 231, 183, 0.2), rgba(59, 130, 246, 0.2));
+        }
+
+        .update-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .update-item.announcement { border-left-color: #6EE7B7; }
+        .update-item.reminder { border-left-color: #3B82F6; }
+        .update-item.event { border-left-color: #9333EA; }
+
+        .update-time {
+            font-size: 0.8rem;
+            color: #64748B;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .update-item h4 {
+            color: #6EE7B7;
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .update-item p {
+            color: #CBD5E1;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media screen and (max-width: 768px) {
+            .dashboard-container {
+                margin-top: 80px;
+                padding: 15px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-value {
+                font-size: 2rem;
+            }
+
+            .live-updates-card {
+                grid-column: 1 / span 1 !important;
+                grid-row: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">HumanoidX</div>
+        <div class="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Dashboard</h1>
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="card-title">Time Until Hackathon</span>
+                    <i class="fas fa-hourglass-start card-icon"></i>
+                </div>
+                <div class="card-value pre-event-countdown">Loading...</div>
+                <p class="card-description">Until Synthetix hackathon begins</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="card-title">Prize Pool</span>
+                    <i class="fas fa-trophy card-icon"></i>
+                </div>
+                <div class="card-value">₹50K</div>
+                <p class="card-description">Total prize money for winners</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card" style="grid-column: 1 / span 2;">
+                <div class="card-header">
+                    <span class="card-title">Categories</span>
+                    <i class="fas fa-layer-group card-icon"></i>
+                </div>
+                <div class="card-value">3</div>
+                <p class="card-description">Programming, CAD, Electrical</p>
+            </div>
+
+            <div class="dashboard-card" style="grid-column: 1 / span 2;">
+                <div class="card-header">
+                    <span class="card-title">Upcoming Deadlines</span>
+                    <i class="fas fa-calendar-check card-icon"></i>
+                </div>
+                <div style="margin-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: white">Project Submission</span>
+                        <span style="color: white" class="countdown-value">00:00:00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: white">Presentation Round</span>
+                        <span style="color: white">15:00:00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: white">Final Evaluation</span>
+                        <span style="color: white">18:30:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-card live-updates-card" style="grid-column: 3 / span 1; grid-row: 1 / span 3;">
+                <div class="card-header">
+                    <span class="card-title">Live Updates</span>
+                    <i class="fas fa-bell card-icon"></i>
+                </div>
+                <div class="updates-container" style="height: 300px; overflow-y: auto; padding-right: 10px;">
+                    <div class="update-section">
+                        <h3 style="color: #6EE7B7; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(110, 231, 183, 0.2);">Current Events</h3>
+                        <div class="update-item announcement" style="padding: 10px;">
+                            <span class="update-time">Just now</span>
+                            <h4>Opening Ceremony</h4>
+                            <p>Main hall kickoff event</p>
+                        </div>
+                    </div>
+
+                    <div class="update-section">
+                        <h3 style="color: #3B82F6; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(59, 130, 246, 0.2);">Reminders</h3>
+                        <div class="update-item reminder" style="padding: 10px;">
+                            <span class="update-time">5 mins ago</span>
+                            <h4>Team Registration</h4>
+                            <p>Complete team profiles ASAP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="margin-top: 20px;">
+            <div class="dashboard-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <span class="card-title">Project Submission</span>
+                    <i class="fas fa-upload card-icon"></i>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h3 style="color: #6EE7B7; margin-bottom: 15px;">Submission Requirements</h3>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-users" style="color: #3B82F6; margin-right: 10px;"></i>Team Information: Include team name and all team members' details</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-lightbulb" style="color: #3B82F6; margin-right: 10px;"></i>Problem Statement: Clearly specify your chosen problem statement and category</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-code" style="color: #3B82F6; margin-right: 10px;"></i>Project Repository: Submit the source code/ CAD design/ circuit diagram file</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-book" style="color: #3B82F6; margin-right: 10px;"></i>Documentation: Include a detailed pdf explain project features</li>
+                    </ul>
+                    <div style="margin-bottom: 20px;">
+                        <label for="team-select" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Select Your Team<span id="team-required" style="color: #EF4444;">*</span></label>
+                        <select id="team-select" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#6EE7B7'" onmouseout="this.style.borderColor='#3B82F6'" required>
+                            <option value="" disabled selected>Choose your team...</option>
+                        </select>
+                    </div>
+                    <form id="submission">
+                    <div style="margin-bottom: 20px;">
+                        <label for="submissionUrl" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Submission URL<span id="url-required" style="color: #EF4444;">*</span></label>
+                        <input type="url" id="submissionUrl" name="submissionUrl" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; margin-bottom: 20px;" required placeholder="Enter your submission URL">
+                    </div>
+                    <button id="submit-project" style="display: inline-block; padding: 12px 30px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); border: none; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; opacity: 0.6;">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Project
+                    </button>
+                    </form>
+                    <script>
+                        const teamSelect = document.getElementById('team-select');
+                        const submitButton = document.getElementById('submit-project');
+                        const submissionUrl = document.getElementById('submissionUrl');
+                        const teamRequired = document.getElementById('team-required');
+                        const urlRequired = document.getElementById('url-required');
+
+                        function validateForm() {
+                            const hasTeam = teamSelect.value !== '';
+                            const hasUrl = submissionUrl.value.trim() !== '';
+
+                            teamRequired.style.display = hasTeam ? 'none' : 'inline';
+                            urlRequired.style.display = hasUrl ? 'none' : 'inline';
+
+                            if (hasTeam && hasUrl) {
+                                submitButton.style.opacity = '1';
+                                submitButton.style.cursor = 'pointer';
+                                submitButton.disabled = false;
+                            } else {
+                                submitButton.style.opacity = '0.6';
+                                submitButton.style.cursor = 'not-allowed';
+                                submitButton.disabled = true;
+                            }
+                        }
+
+                        teamSelect.addEventListener('change', validateForm);
+                        submissionUrl.addEventListener('input', validateForm);
+
+                        submitButton.addEventListener('mouseover', function() {
+                            if (!this.disabled) {
+                                this.style.transform = 'translateY(-2px)';
+                                this.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.4)';
+                            }
+                        });
+
+                        submitButton.addEventListener('mouseout', function() {
+                            this.style.transform = 'translateY(0)';
+                            this.style.boxShadow = 'none';
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="countdown.js"></script>
+    <script src="submission.js"></script>
+    <script>
+        // Add any dashboard-specific JavaScript here
+    </script>
+</body>
+</html>
