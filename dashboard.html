@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Synthetix</title>
-    <link rel="icon" href="resources/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
-    <link rel="apple-touch-icon" href="resources/favicon.png"> <!-- For iOS -->
+    <link rel="icon" type="image/png" href="humanoidx.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -289,7 +288,7 @@
                     <span class="card-title">Prize Pool</span>
                     <i class="fas fa-trophy card-icon"></i>
                 </div>
-                <div class="card-value">₹25K</div>
+                <div class="card-value">₹50K</div>
                 <p class="card-description">Total prize money for winners</p>
             </div>
         </div>
@@ -369,17 +368,20 @@
                         <label for="team-select" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Select Your Team<span id="team-required" style="color: #EF4444;">*</span></label>
                         <select id="team-select" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#6EE7B7'" onmouseout="this.style.borderColor='#3B82F6'" required>
                             <option value="" disabled selected>Choose your team...</option>
+                            <option value="team1">Team Alpha</option>
+                            <option value="team2">Team Beta</option>
+                            <option value="team3">Team Gamma</option>
+                            <option value="team4">Team Delta</option>
+                            <option value="team5">Team Epsilon</option>
                         </select>
                     </div>
-                    <form id="submission">
                     <div style="margin-bottom: 20px;">
                         <label for="submissionUrl" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Submission URL<span id="url-required" style="color: #EF4444;">*</span></label>
                         <input type="url" id="submissionUrl" name="submissionUrl" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; margin-bottom: 20px;" required placeholder="Enter your submission URL">
                     </div>
-                    <button id="submit-project" style="display: inline-block; padding: 12px 30px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); border: none; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; opacity: 0.6;">
+                    <button id="submit-project" style="display: inline-block; padding: 12px 30px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); border: none; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; opacity: 0.6;" disabled>
                         <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Project
                     </button>
-                    </form>
                     <script>
                         const teamSelect = document.getElementById('team-select');
                         const submitButton = document.getElementById('submit-project');
@@ -427,7 +429,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="countdown.js"></script>
-    <script src="submission.js"></script>
     <script>
         // Add any dashboard-specific JavaScript here
     </script>
