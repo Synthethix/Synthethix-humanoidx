@@ -1,948 +1,965 @@
-
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synthetix - VIT Chennai</title>
-    <link rel="icon" href="resources/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
-    <link rel="apple-touch-icon" href="resources/favicon.png"> <!-- For iOS -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="upload.js"></script>
-    <script src="form-storage.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Scrollbar Styling */
-        body::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        body::-webkit-scrollbar-track {
-          background: rgba(20, 20, 20, 0.95);
-          border-radius: 4px;
-        }
-
-        body::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #6EE7B7, #3B82F6);
-          border-radius: 4px;
-          transition: background 0.3s ease;
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #3B82F6, #6EE7B7);
-        }
-
-        transition: transform 0.3s, filter 0.3s;
-        }
-
-        .icon img {
-          width: 100%;
-          height: auto;
-          filter: brightness(0) invert(1);
-          /* Invert colors for dark theme */
-        }
-
-        .icon:hover {
-          transform: scale(1.1);
-          filter: brightness(1.2);
-          /* Brighten on hover */
-        }
-
-
-
-        body {
-          margin: 0;
-          font-family: 'Poppins', sans-serif;
-          color: white;
-          background: #000;
-          overflow-x: hidden;
-        }
-
-        #register-section {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          width: 100%;
-          /*background: radial-gradient(circle, rgba(59,130,246,1) 0%, rgba(147,51,234,1) 100%);*/
-        }
-
-
-        .register-container {
-          display: flex;
-          max-width: 1200px;
-          width: 90%;
-          height: 85vh;
-          border-radius: 20px;
-          overflow: hidden;
-        }
-
-        /* Left Side: Form */
-        .form-container {
-          flex: 1;
-          padding: 60px;
-          background: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(15px);
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-        }
-
-        .form-container h2 {
-          font-size: 2.5rem;
-          color: #DADADA;
-          margin-bottom: 10px;
-        }
-
-
-        .register-form {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .input-box {
-          position: relative;
-          width: 100%;
-        }
-
-        .input-box input,
-        .input-box textarea {
-          width: 100%;
-          padding: 16px;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          border-radius: 8px;
-          background: transparent;
-          color: white;
-          font-size: 1.1rem;
-          outline: none;
-        }
-
-        .input-box input[type="file"] {
-          padding: 12px;
-          cursor: pointer;
-        }
-
-        .input-box input[type="file"]::-webkit-file-upload-button {
-          background: #3B82F6;
-          border: none;
-          border-radius: 4px;
-          color: white;
-          padding: 8px 16px;
-          margin-right: 12px;
-          cursor: pointer;
-          transition: background 0.3s;
-        }
-
-        .input-box input[type="file"]::-webkit-file-upload-button:hover {
-          background: #2563eb;
-        }
-
-        .image-preview {
-          max-width: 100%;
-          height: 150px;
-          border-radius: 8px;
-          margin-top: 10px;
-          display: none;
-          object-fit: contain;
-        }
-          transition: 0.3s;
-        }
-
-        .input-box label {
-          position: absolute;
-          top: 18px;
-          left: 16px;
-          font-size: 1.1rem;
-          color: rgba(255, 255, 255, 0.7);
-          transition: 0.3s;
-        }
-
-        .input-box input:focus~label,
-        .input-box input:valid~label,
-        .input-box textarea:focus~label,
-        .input-box textarea:valid~label {
-          top: -12px;
-          left: 10px;
-          font-size: 0.9rem;
-          color: #6EE7B7;
-        }
-
-        .input-box textarea {
-          height: 120px;
-          resize: none;
-        }
-
-        .register-form button {
-          background: linear-gradient(90deg, #6EE7B7, #3B82F6);
-          color: white;
-          border: none;
-          padding: 16px;
-          font-size: 1.4rem;
-          font-weight: bold;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: 0.3s;
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-
-        .register-form button:hover {
-          background: linear-gradient(90deg, #3B82F6, #6EE7B7);
-          box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
-          transform: translateY(-3px);
-        }
-
-        /* Right Side: Quotes */
-        .quote-container {
-          flex: 1;
-          padding: 60px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
-          background: linear-gradient(135deg, #2C3E50, #4CA1AF);
-          color: white;
-        }
-
-        .quote-container h2 {
-          font-size: 2.5rem;
-          font-weight: bold;
-          background: #DADADA;
-
-
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          margin-bottom: 20px;
-        }
-
-        .quote-container p {
-          font-size: 1.4rem;
-          font-weight: 500;
-          margin: 15px 0;
-          color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Responsive Design */
-        @media screen and (max-width: 1024px) {
-          .register-container {
-              flex-direction: column;
-              height: auto;
-          }
-
-          .form-container,
-          .quote-container {
-              width: 100%;
-              text-align: center;
-              padding: 40px;
-          }
-
-          .form-container h2,
-          .quote-container h2 {
-              font-size: 2rem;
-          }
-
-          .quote-container p {
-              font-size: 1.2rem;
-          }
-        }
-
-
-        @keyframes textGlow {
-            from {
-                text-shadow: 0 0 10px rgba(110, 231, 183, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(110, 231, 183, 0.8), 0 0 40px rgba(59, 130, 246, 0.6);
-            }
-        }
-
-        .timeline-event {
-          position: absolute;
-          width: 200px;
-          padding: 15px;
-          background: rgba(20, 20, 20, 0.8);
-          color: white;
-          border-radius: 10px;
-          text-align: center;
-          transform: translate(-50%, -50%);
-          box-shadow: 0 4px 8px rgba(59, 130, 246, 0.5);
-          animation: fadeIn 1s ease-in-out;
-        }
-
-        /* Timeline Styles */
-        .timeline-container {
-          width: 80%;
-          max-width: 1200px;
-          margin: 50px auto;
-          position: relative;
-          padding-bottom: 50px;
-          padding-top: 20px;
-        }
-
-        .timeline-container::after {
-          content: '';
-          position: absolute;
-          width: 6px;
-          background-color: #3B82F6;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          margin-left: -3px;
-          z-index: 1;
-        }
-
-        .timeline-event {
-          padding: 20px 30px;
-          background-color: rgba(20, 20, 20, 0.8);
-          border-radius: 6px;
-          margin-bottom: 20px;
-          width: 45%;
-          position: relative;
-          text-align: left;
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0);
-          /* No glow initially */
-          transition: all 0.3s ease;
-          opacity: 0;
-          /* Start hidden */
-          transform: translateY(50px);
-          /* Initial position */
-          z-index: 2;
-        }
-
-        .timeline-event.show {
-          opacity: 1;
-          /* Make visible */
-          transform: translateY(0);
-          /* Bring to normal position */
-        }
-
-        .timeline-event:hover {
-          box-shadow: 0 0 30px rgba(59, 130, 246, 1),
-              0 0 60px rgba(59, 130, 246, 0.7),
-              0 0 90px rgba(59, 130, 246, 0.5);
-          /* Glow on hover */
-        }
-
-
-        @keyframes glowPulse {
-          0% {
-              box-shadow: 0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.1);
-          }
-
-          100% {
-              box-shadow: 0 0 30px rgba(59, 130, 246, 1), 0 0 60px rgba(59, 130, 246, 0.7), 0 0 90px rgba(59, 130, 246, 0.5);
-          }
-        }
-
-        .timeline-event.show {
-          opacity: 1;
-          /* Make visible */
-          transform: translateY(0);
-          /* Bring to normal position */
-        }
-
-        .timeline-event:nth-child(odd) {
-          left: 0;
-          clear: right;
-        }
-
-        .timeline-event:nth-child(even) {
-          left: 55%;
-          clear: left;
-        }
-
-        .timeline-event::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 0;
-          top: 20px;
-          border-style: solid;
-        }
-
-        .timeline-event:nth-child(odd)::after {
-          left: 100%;
-          border-width: 10px 0 10px 10px;
-          border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
-        }
-
-        .timeline-event:nth-child(even)::after {
-          right: 100%;
-          border-width: 10px 10px 10px 0;
-          border-color: transparent rgba(20, 20, 20, 0.8) transparent transparent;
-        }
-
-        .timeline-event h3 {
-          font-size: 1.5rem;
-          margin-bottom: 5px;
-          color: #6EE7B7;
-        }
-
-        .timeline-event p {
-          font-size: 1rem;
-        }
-
-        /* Media queries - responsive timeline */
-        @media screen and (max-width: 900px) {
-          .timeline-container {
-              width: 90%;
-              padding-bottom: 60px;
-          }
-
-          .timeline-container::after {
-              left: 3%;
-          }
-
-          .timeline-event {
-              width: 90%;
-          }
-
-          .timeline-event:nth-child(odd) {
-              left: 0%;
-          }
-
-          .timeline-event:nth-child(even) {
-              left: 0%;
-          }
-
-          .timeline-event:nth-child(odd)::after {
-              left: 100%;
-              border-width: 10px 0 10px 10px;
-              border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
-          }
-
-          .timeline-event:nth-child(even)::after {
-              border-width: 0;
-          }
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          scroll-behavior: smooth;
-        }
-
-        body {
-          font-family: 'Inter', sans-serif;
-          background: black;
-          color: white;
-        }
-
-        #home {
-          position: relative;
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          overflow: hidden;
-        }
-
-        canvas {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-        }
-
-
-        nav {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 15px;
-          background: rgba(10, 10, 10, 0.8);
-          position: fixed;
-          top: 0;
-          z-index: 10;
-        }
-
-        .nav-logo {
-          font-family: 'Orbitron', 'Arial Black', sans-serif;
-          font-size: 1.5rem;
-          font-weight: 800;
-          background: linear-gradient(90deg, #6EE7B7, #3B82F6, #6EE7B7);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: gradient 3s linear infinite;
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 12px;
-        }
-
-        .nav-links a {
-          color: #cbd5e1;
-          text-decoration: none;
-          font-size: 1.2rem;
-          transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-          color: #3B82F6;
-        }
-
-        .nav-links a.active {
-          color: #3B82F6;
-          font-weight: 600;
-        }
-
-        @keyframes gradient {
-          0% { background-position: 0% center; }
-          100% { background-position: 200% center; }
-        }
-
-        section {
-          height: auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          text-align: center;
-        }
-
-        #about,
-        #timeline {
-          background: black;
-        }
-
-        h1 {
-          font-size: 4rem;
-          font-weight: 700;
-          background: linear-gradient(90deg, #6EE7B7, #3B82F6);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        p {
-          font-size: 1.5rem;
-          color: #cbd5e1;
-          max-width: 800px;
-        }
-
-        /* Timeline Styles */
-        .timeline-container {
-          width: 80%;
-          max-width: 1200px;
-          margin: 50px auto;
-          position: relative;
-          padding-bottom: 50px;
-          padding-top: 20px;
-        }
-
-        .timeline-container::after {
-          content: '';
-          position: absolute;
-          width: 6px;
-          background-color: #3B82F6;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          margin-left: -3px;
-          z-index: 1;
-        }
-
-        .timeline-event {
-          padding: 20px 30px;
-          background-color: rgba(20, 20, 20, 0.8);
-          border-radius: 6px;
-          margin-bottom: 20px;
-          width: 45%;
-          position: relative;
-          text-align: left;
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-          /* Glow effect */
-          transition: all 0.3s ease;
-          opacity: 0;
-          /* Start hidden */
-          transform: translateY(50px);
-          /* Initial position */
-          z-index: 2;
-        }
-
-        .timeline-event.show {
-          opacity: 1;
-          /* Make visible */
-          transform: translateY(0);
-          /* Bring to normal position */
-          box-shadow: 0 0 20px rgba(59, 130, 246, 1);
-          /* Enhanced glow */
-        }
-
-        .timeline-event:nth-child(odd) {
-          left: 0;
-          clear: right;
-        }
-
-        .timeline-event:nth-child(even) {
-          left: 55%;
-          clear: left;
-        }
-
-        .timeline-event::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 0;
-          top: 20px;
-          border-style: solid;
-        }
-
-        .timeline-event:nth-child(odd)::after {
-          left: 100%;
-          border-width: 10px 0 10px 10px;
-          border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
-        }
-
-        .timeline-event:nth-child(even)::after {
-          right: 100%;
-          border-width: 10px 10px 10px 0;
-          border-color: transparent rgba(20, 20, 20, 0.8) transparent transparent;
-        }
-
-        .timeline-event h3 {
-          font-size: 1.5rem;
-          margin-bottom: 5px;
-          color: #6EE7B7;
-        }
-
-        .timeline-event p {
-          font-size: 1rem;
-        }
-
-        /* Media queries - responsive timeline */
-        @media screen and (max-width: 900px) {
-          .timeline-container {
-              width: 90%;
-              padding-bottom: 60px;
-          }
-
-          .timeline-container::after {
-              left: 3%;
-          }
-
-          .timeline-event {
-              width: 90%;
-          }
-
-          .timeline-event:nth-child(odd) {
-              left: 0%;
-          }
-
-          .timeline-event:nth-child(even) {
-              left: 0%;
-          }
-
-          .timeline-event:nth-child(odd)::after {
-              left: 100%;
-              border-width: 10px 0 10px 10px;
-              border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
-          }
-
-          .timeline-event:nth-child(even)::after {
-              border-width: 0;
-          }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthetix - VIT Chennai</title>
+  <link rel="icon" type="image/png" href="humanoidx.png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="upload.js"></script>
+  <script src="form-storage.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Scrollbar Styling */
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: rgba(20, 20, 20, 0.95);
+      border-radius: 4px;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #6EE7B7, #3B82F6);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #3B82F6, #6EE7B7);
+    }
+
+    transition: transform 0.3s,
+    filter 0.3s;
+    }
+
+    .icon img {
+      width: 100%;
+      height: auto;
+      filter: brightness(0) invert(1);
+      /* Invert colors for dark theme */
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+      /* Brighten on hover */
+    }
+
+
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    #register-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      /*background: radial-gradient(circle, rgba(59,130,246,1) 0%, rgba(147,51,234,1) 100%);*/
+    }
+
+
+    .register-container {
+      display: flex;
+      max-width: 1200px;
+      width: 90%;
+      height: 85vh;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    /* Left Side: Form */
+    .form-container {
+      flex: 1;
+      padding: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(15px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .form-container h2 {
+      font-size: 2.5rem;
+      color: #DADADA;
+      margin-bottom: 10px;
+    }
+
+
+    .register-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-box input,
+    .input-box textarea {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      background: transparent;
+      color: white;
+      font-size: 1.1rem;
+      outline: none;
+    }
+
+    .input-box input[type="file"] {
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .input-box input[type="file"]::-webkit-file-upload-button {
+      background: #3B82F6;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      padding: 8px 16px;
+      margin-right: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .input-box input[type="file"]::-webkit-file-upload-button:hover {
+      background: #2563eb;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+      object-fit: contain;
+    }
+
+    transition: 0.3s;
+    }
+
+    .input-box label {
+      position: absolute;
+      top: 18px;
+      left: 16px;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: 0.3s;
+    }
+
+    .input-box input:focus~label,
+    .input-box input:valid~label,
+    .input-box textarea:focus~label,
+    .input-box textarea:valid~label {
+      top: -12px;
+      left: 10px;
+      font-size: 0.9rem;
+      color: #6EE7B7;
+    }
+
+    .input-box textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    .register-form button {
+      background: linear-gradient(90deg, #6EE7B7, #3B82F6);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .register-form button:hover {
+      background: linear-gradient(90deg, #3B82F6, #6EE7B7);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+      transform: translateY(-3px);
+    }
+
+    /* Right Side: Quotes */
+    .quote-container {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #2C3E50, #4CA1AF);
+      color: white;
+    }
+
+    .quote-container h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: #DADADA;
+
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .quote-container p {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 15px 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 1024px) {
+      .register-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .form-container,
+      .quote-container {
+        width: 100%;
+        text-align: center;
+        padding: 40px;
+      }
+
+      .form-container h2,
+      .quote-container h2 {
+        font-size: 2rem;
+      }
+
+      .quote-container p {
+        font-size: 1.2rem;
+      }
+    }
+
+
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 10px rgba(110, 231, 183, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      to {
+        text-shadow: 0 0 20px rgba(110, 231, 183, 0.8), 0 0 40px rgba(59, 130, 246, 0.6);
+      }
+    }
+
+    .timeline-event {
+      position: absolute;
+      width: 200px;
+      padding: 15px;
+      background: rgba(20, 20, 20, 0.8);
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.5);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Timeline Styles */
+    .timeline-container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 50px auto;
+      position: relative;
+      padding-bottom: 50px;
+      padding-top: 20px;
+    }
+
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #3B82F6;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      z-index: 1;
+    }
+
+    .timeline-event {
+      padding: 20px 30px;
+      background-color: rgba(20, 20, 20, 0.8);
+      border-radius: 6px;
+      margin-bottom: 20px;
+      width: 45%;
+      position: relative;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0);
+      /* No glow initially */
+      transition: all 0.3s ease;
+      opacity: 0;
+      /* Start hidden */
+      transform: translateY(50px);
+      /* Initial position */
+      z-index: 2;
+    }
+
+    .timeline-event.show {
+      opacity: 1;
+      /* Make visible */
+      transform: translateY(0);
+      /* Bring to normal position */
+    }
+
+    .timeline-event:hover {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 1),
+        0 0 60px rgba(59, 130, 246, 0.7),
+        0 0 90px rgba(59, 130, 246, 0.5);
+      /* Glow on hover */
+    }
+
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.1);
+      }
+
+      100% {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 1), 0 0 60px rgba(59, 130, 246, 0.7), 0 0 90px rgba(59, 130, 246, 0.5);
+      }
+    }
+
+    .timeline-event.show {
+      opacity: 1;
+      /* Make visible */
+      transform: translateY(0);
+      /* Bring to normal position */
+    }
+
+    .timeline-event:nth-child(odd) {
+      left: 0;
+      clear: right;
+    }
+
+    .timeline-event:nth-child(even) {
+      left: 55%;
+      clear: left;
+    }
+
+    .timeline-event::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 20px;
+      border-style: solid;
+    }
+
+    .timeline-event:nth-child(odd)::after {
+      left: 100%;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
+    }
+
+    .timeline-event:nth-child(even)::after {
+      right: 100%;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent rgba(20, 20, 20, 0.8) transparent transparent;
+    }
+
+    .timeline-event h3 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: #6EE7B7;
+    }
+
+    .timeline-event p {
+      font-size: 1rem;
+    }
+
+    /* Media queries - responsive timeline */
+    @media screen and (max-width: 900px) {
+      .timeline-container {
+        width: 90%;
+        padding-bottom: 60px;
+      }
+
+      .timeline-container::after {
+        left: 3%;
+      }
+
+      .timeline-event {
+        width: 90%;
+      }
+
+      .timeline-event:nth-child(odd) {
+        left: 0%;
+      }
+
+      .timeline-event:nth-child(even) {
+        left: 0%;
+      }
+
+      .timeline-event:nth-child(odd)::after {
+        left: 100%;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
+      }
+
+      .timeline-event:nth-child(even)::after {
+        border-width: 0;
+      }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: black;
+      color: white;
+    }
+
+    #home {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: rgba(10, 10, 10, 0.8);
+      position: fixed;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', 'Arial Black', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #6EE7B7, #3B82F6, #6EE7B7);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 3s linear infinite;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #3B82F6;
+    }
+
+    .nav-links a.active {
+      color: #3B82F6;
+      font-weight: 600;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    section {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #about,
+    #timeline {
+      background: black;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #6EE7B7, #3B82F6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      max-width: 800px;
+    }
+
+    /* Timeline Styles */
+    .timeline-container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 50px auto;
+      position: relative;
+      padding-bottom: 50px;
+      padding-top: 20px;
+    }
+
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #3B82F6;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      z-index: 1;
+    }
+
+    .timeline-event {
+      padding: 20px 30px;
+      background-color: rgba(20, 20, 20, 0.8);
+      border-radius: 6px;
+      margin-bottom: 20px;
+      width: 45%;
+      position: relative;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+      /* Glow effect */
+      transition: all 0.3s ease;
+      opacity: 0;
+      /* Start hidden */
+      transform: translateY(50px);
+      /* Initial position */
+      z-index: 2;
+    }
+
+    .timeline-event.show {
+      opacity: 1;
+      /* Make visible */
+      transform: translateY(0);
+      /* Bring to normal position */
+      box-shadow: 0 0 20px rgba(59, 130, 246, 1);
+      /* Enhanced glow */
+    }
+
+    .timeline-event:nth-child(odd) {
+      left: 0;
+      clear: right;
+    }
+
+    .timeline-event:nth-child(even) {
+      left: 55%;
+      clear: left;
+    }
+
+    .timeline-event::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 20px;
+      border-style: solid;
+    }
+
+    .timeline-event:nth-child(odd)::after {
+      left: 100%;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
+    }
+
+    .timeline-event:nth-child(even)::after {
+      right: 100%;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent rgba(20, 20, 20, 0.8) transparent transparent;
+    }
+
+    .timeline-event h3 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: #6EE7B7;
+    }
+
+    .timeline-event p {
+      font-size: 1rem;
+    }
+
+    /* Media queries - responsive timeline */
+    @media screen and (max-width: 900px) {
+      .timeline-container {
+        width: 90%;
+        padding-bottom: 60px;
+      }
+
+      .timeline-container::after {
+        left: 3%;
+      }
+
+      .timeline-event {
+        width: 90%;
+      }
+
+      .timeline-event:nth-child(odd) {
+        left: 0%;
+      }
+
+      .timeline-event:nth-child(even) {
+        left: 0%;
+      }
+
+      .timeline-event:nth-child(odd)::after {
+        left: 100%;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent rgba(20, 20, 20, 0.8);
+      }
+
+      .timeline-event:nth-child(even)::after {
+        border-width: 0;
+      }
+    }
+  </style>
 
 </head>
 
 <body>
-    <canvas id="bgCanvas"></canvas>
+  <canvas id="bgCanvas"></canvas>
 
-    <nav>
-        <div class="nav-logo">HumanoidX</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#timeline">Timeline</a>
-            <a href="#register">Register</a>
-          <a href="dashboard.html">Dashboard</a>
-            <a href="#contact">Contact</a>
+  <nav>
+    <div class="nav-logo">HumanoidX</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#register">Register</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#contact">Contact</a>
 
+    </div>
+  </nav>
+
+  <section id="home">
+    <h1
+      style="font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 6px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-shadow: 0 0 20px rgba(110, 231, 183, 0.3);">
+      SYNTHETIX</h1>
+    <p
+      style="font-family: 'Poppins', sans-serif; font-size: 1.2rem; letter-spacing: 1px; color: white; margin-top: 1rem; font-weight: 300;">
+      An overnight Hackathon at VIT Chennai, pushing innovation and creativity to the limits.</p>
+  </section>
+
+  <section id="about">
+    <h1>About</h1>
+    <p style="font-size: 1.2rem;">Synthetix is the premier overnight hackathon organized by HumanoidX, the leading tech
+      innovation club of VIT Chennai. As our flagship event, Synthetix brings together brilliant minds, passionate
+      developers, and creative problem-solvers for an electrifying experience that pushes the boundaries of technology.
+    </p>
+    <br>
+    <p style="font-size: 1.2rem;">With cutting-edge problem statements spanning programming, electrical engineering, and
+      CAD design, Synthetix is the ultimate test of skill, creativity, and endurance..</p>
+    <br>
+    <p style="font-size: 1.2rem;">Are you ready to innovate, build, and disrupt? Join us at Synthetix and be part of the
+      future of technology!</p>
+  </section>
+
+  <section id="timeline">
+    <h1>Timeline</h1>
+
+    <div class="timeline-container">
+      <!-- Timeline Events -->
+      <div class="timeline-event">
+        <h3>Day 1:</h3>
+        <p><strong>Arrival & Orientation</strong></p>
+        <p>Participants arrive at VIT Chennai, register, and settle in. Following registration, there will be an
+          orientation session covering the hackathon rules, schedule, available resources, and judging
+          criteria.</p>
+      </div>
+
+      <div class="timeline-event">
+        <h3>Day 1:</h3>
+        <p><strong>Hacking Begins</strong></p>
+        <p>The coding marathon officially kicks off! Teams huddle up to begin working on their innovative
+          projects. Mentors will be available to provide guidance and assistance throughout the night.</p>
+      </div>
+
+      <div class="timeline-event">
+        <h3>Day 2:</h3>
+        <p><strong>Mid-way Check</strong></p>
+        <p>Teams will present their progress to mentors and judges. This is a crucial opportunity to receive
+          feedback, refine your approach, and ensure you're on track to meet the final presentation
+          requirements.</p>
+      </div>
+
+      <div class="timeline-event">
+        <h3>Day 2:</h3>
+        <p><strong>Final Presentation</strong></p>
+        <p>Teams present their final projects to the judges. Presentations should be concise, compelling, and
+          clearly demonstrate the problem your project solves, the solution you've implemented, and its
+          potential impact.</p>
+      </div>
+
+      <div class="timeline-event">
+        <h3>Day 2:</h3>
+        <p><strong>Awards Ceremony</strong></p>
+        <p>Winners are announced and prizes are awarded. Celebrate your hard work, network with other
+          participants, and enjoy the culmination of the overnight coding marathon!</p>
+      </div>
+    </div>
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Registration Form</title>
+      <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+
+
+      <section id="register">
+        <div class="register-container">
+          <!-- Registration Form Section -->
+          <div class="form-container">
+            <h2>🚀 Join the Revolution</h2>
+            <a href="https://vitchennaievents.com/" target="_blank" class="google-form-button">
+              <i class="fas fa-rocket"></i> Register Now
+            </a>
+            <style>
+              .google-form-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 18px 36px;
+                font-size: 1.4rem;
+                font-weight: 600;
+                text-decoration: none;
+                color: white;
+                background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+                border-radius: 15px;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                cursor: pointer;
+                text-align: center;
+                margin-top: 30px;
+                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+                backdrop-filter: blur(10px);
+                position: relative;
+                overflow: hidden;
+              }
+
+              .google-form-button:hover {
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
+                background: linear-gradient(135deg, #3B82F6, #6EE7B7);
+                border-color: rgba(255, 255, 255, 0.2);
+              }
+
+              .google-form-button:active {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+              }
+
+              .google-form-button i {
+                font-size: 1.2em;
+                transition: transform 0.3s ease;
+              }
+
+              .google-form-button:hover i {
+                transform: translateX(3px) rotate(5deg);
+              }
+            </style>
+          </div>
+
+          <!-- Right Side: Quotes Section -->
+          <div class="quote-container">
+            <h2>"Think. Code. Create."</h2>
+            <div class="qr-code-container">
+              <img src="qrcodeSynthetix.jpg" alt="Synthetix QR Code" class="qr-code">
+            </div>
+          </div>
         </div>
-    </nav>
-
-    <section id="home">
-        <h1 style="font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 6px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-shadow: 0 0 20px rgba(110, 231, 183, 0.3);">SYNTHETIX</h1>
-        <p style="font-family: 'Poppins', sans-serif; font-size: 1.2rem; letter-spacing: 1px; color: white; margin-top: 1rem; font-weight: 300;">An overnight Hackathon at VIT Chennai, pushing innovation and creativity to the limits.</p>
-    </section>
-
-    <section id="about">
-        <h1>About</h1>
-        <p style="font-size: 1.2rem;">Synthetix is the premier overnight hackathon organized by HumanoidX, the leading tech innovation club of VIT Chennai. As our flagship event, Synthetix brings together brilliant minds, passionate developers, and creative problem-solvers for an electrifying experience that pushes the boundaries of technology.</p>
-<br>
-        <p style="font-size: 1.2rem;">With cutting-edge problem statements spanning programming, electrical engineering, and CAD design, Synthetix is the ultimate test of skill, creativity, and endurance..</p>
-<br>
-        <p style="font-size: 1.2rem;">Are you ready to innovate, build, and disrupt? Join us at Synthetix and be part of the future of technology!</p>
-    </section>
-
-    <section id="timeline">
-        <h1>Timeline</h1>
-
-        <div class="timeline-container">
-            <!-- Timeline Events -->
-            <div class="timeline-event">
-                <h3>Day 1:</h3>
-                <p><strong>Arrival & Orientation</strong></p>
-                <p>Participants arrive at VIT Chennai, register, and settle in. Following registration, there will be an
-                    orientation session covering the hackathon rules, schedule, available resources, and judging
-                    criteria.</p>
+      </section>
+      <section id="contact">
+        <div class="contact-container">
+          <h2>Get in Touch</h2>
+          <div class="contact-content">
+            <div class="contact-info">
+              <div class="contact-details">
+              </div>
+              <div class="social-links">
+                <a href="mailto:contact@synthetix.com" class="social-icon">
+                  <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/humanoidx.vitcc?igsh=MWhlYXJpaXI5cW5xdQ==" target="_blank"
+                  class="social-icon">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/1234567890" target="_blank" class="social-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+              </div>
             </div>
-
-            <div class="timeline-event">
-                <h3>Day 1:</h3>
-                <p><strong>Hacking Begins</strong></p>
-                <p>The coding marathon officially kicks off! Teams huddle up to begin working on their innovative
-                    projects. Mentors will be available to provide guidance and assistance throughout the night.</p>
-            </div>
-
-            <div class="timeline-event">
-                <h3>Day 2:</h3>
-                <p><strong>Mid-way Check</strong></p>
-                <p>Teams will present their progress to mentors and judges. This is a crucial opportunity to receive
-                    feedback, refine your approach, and ensure you're on track to meet the final presentation
-                    requirements.</p>
-            </div>
-
-            <div class="timeline-event">
-                <h3>Day 2:</h3>
-                <p><strong>Final Presentation</strong></p>
-                <p>Teams present their final projects to the judges. Presentations should be concise, compelling, and
-                    clearly demonstrate the problem your project solves, the solution you've implemented, and its
-                    potential impact.</p>
-            </div>
-
-            <div class="timeline-event">
-                <h3>Day 2:</h3>
-                <p><strong>Awards Ceremony</strong></p>
-                <p>Winners are announced and prizes are awarded. Celebrate your hard work, network with other
-                    participants, and enjoy the culmination of the overnight coding marathon!</p>
-            </div>
+          </div>
         </div>
+      </section>
+    </body>
+
+    </html>
+    <script>
 
 
+      // GSAP scroll-trigger animation
+      gsap.registerPlugin(ScrollTrigger);
 
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Registration Form</title>
-            <link rel="stylesheet" href="styles.css">
-        </head>
-
-        <body>
-
-
-            <section id="register">
-                <div class="register-container">
-                    <!-- Registration Form Section -->
-                    <div class="form-container">
-                        <h2>🚀 Join the Revolution</h2>
-                        <a href="https://vitchennaievents.com/conf1/" target="_blank" class="google-form-button">
-                            <i class="fas fa-rocket"></i> Register Now
-                        </a>
-                        <style>
-                            .google-form-button {
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 10px;
-                                padding: 18px 36px;
-                                font-size: 1.4rem;
-                                font-weight: 600;
-                                text-decoration: none;
-                                color: white;
-                                background: linear-gradient(135deg, #6EE7B7, #3B82F6);
-                                border-radius: 15px;
-                                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                                border: 2px solid rgba(255, 255, 255, 0.1);
-                                cursor: pointer;
-                                text-align: center;
-                                margin-top: 30px;
-                                box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-                                backdrop-filter: blur(10px);
-                                position: relative;
-                                overflow: hidden;
-                            }
-
-                            .google-form-button:hover {
-                                transform: translateY(-5px) scale(1.02);
-                                box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
-                                background: linear-gradient(135deg, #3B82F6, #6EE7B7);
-                                border-color: rgba(255, 255, 255, 0.2);
-                            }
-
-                            .google-form-button:active {
-                                transform: translateY(-2px);
-                                box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-                            }
-
-                            .google-form-button i {
-                                font-size: 1.2em;
-                                transition: transform 0.3s ease;
-                            }
-
-                            .google-form-button:hover i {
-                                transform: translateX(3px) rotate(5deg);
-                            }
-                        </style>
-                    </div>
-
-                    <!-- Right Side: Quotes Section -->
-                    <div class="quote-container">
-                        <h2>"Think. Code. Create."</h2>
-                        <div class="qr-code-container">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://synthetix.vit" alt="Synthetix QR Code" class="qr-code">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="contact">
-                <div class="contact-container">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <div class="contact-details">
-                            </div>
-                            <div class="social-links">
-                                <a href="mailto:contact@synthetix.com" class="social-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a href="https://www.instagram.com/humanoidx.vitcc?igsh=MWhlYXJpaXI5cW5xdQ==" target="_blank" class="social-icon">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://wa.me/1234567890" target="_blank" class="social-icon">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </body>
-
-        </html>
-        <script>
-
-
-            // GSAP scroll-trigger animation
-            gsap.registerPlugin(ScrollTrigger);
-
-            gsap.utils.toArray('.timeline-event').forEach(event => {
-                gsap.fromTo(event,
-                    {
-                        opacity: 0,
-                        y: 50,
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scrollTrigger: {
-                            trigger: event,
-                            start: "top 80%",
-                            end: "top 30%",
-                            scrub: true,
-                        }
-                    });
-            });
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bgCanvas'), alpha: true});
-            renderer.setSize(window.innerWidth, window.innerHeight);
-
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 500;
-            const posArray = new Float32Array(particlesCount * 3);
-
-            for (let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 10;
+      gsap.utils.toArray('.timeline-event').forEach(event => {
+        gsap.fromTo(event,
+          {
+            opacity: 0,
+            y: 50,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: event,
+              start: "top 80%",
+              end: "top 30%",
+              scrub: true,
             }
+          });
+      });
 
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            const particlesMaterial = new THREE.PointsMaterial({color: 0x3B82F6, size: 0.05});
-            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(particlesMesh);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bgCanvas'), alpha: true});
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
-            camera.position.z = 5;
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 500;
+      const posArray = new Float32Array(particlesCount * 3);
 
-            function animateParticles() {
-                requestAnimationFrame(animateParticles);
-                particlesMesh.rotation.y += 0.002;
-                renderer.render(scene, camera);
-            }
-            animateParticles();
+      for (let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 10;
+      }
 
-            window.addEventListener('resize', () => {
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-            });
-        </script>
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      const particlesMaterial = new THREE.PointsMaterial({color: 0x3B82F6, size: 0.05});
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      camera.position.z = 5;
+
+      function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        particlesMesh.rotation.y += 0.002;
+        renderer.render(scene, camera);
+      }
+      animateParticles();
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+    </script>
 </body>
 
 </html>
 <style>
-.social-icons {
+  .social-icons {
     display: flex;
     gap: 30px;
     margin-top: 20px;
-}
+  }
 
-.social-icon {
+  .social-icon {
     color: white;
     font-size: 3rem;
     transition: transform 0.3s ease, color 0.3s ease;
-}
+  }
 
-.social-icon:hover {
+  .social-icon:hover {
     color: #3B82F6;
     transform: translateY(-3px);
-}
-<style>
-        .google-form-button {
-            display: inline-block;
-            padding: 16px 32px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: white;
-            background: linear-gradient(135deg, #6EE7B7, #3B82F6);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
+  }
 
-        .google-form-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
-            background: linear-gradient(135deg, #3B82F6, #6EE7B7);
-        }
+  <style>.google-form-button {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .google-form-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    background: linear-gradient(135deg, #3B82F6, #6EE7B7);
+  }
 </style>
 </body>
 
