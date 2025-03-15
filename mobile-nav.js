@@ -7,33 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Ensure menu starts in closed state based on screen width
-    const initializeMenuState = () => {
-        if (window.innerWidth > 768) {
-            navLinks.style.visibility = 'visible';
-            navLinks.style.opacity = '1';
-        } else {
-            navLinks.style.visibility = 'hidden';
-            navLinks.style.opacity = '0';
-        }
-    };
+    // Ensure menu starts in closed state
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+    navLinks.style.display = 'none';
 
-    initializeMenuState(); // Initialize on page load
-
-    navLinks.style.transition = 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out';
-
-    const toggleMenu = () => {
-        const isActive = navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active', isActive);
-        navLinks.style.visibility = isActive ? 'visible' : 'hidden';
-        navLinks.style.opacity = isActive ? '1' : '0';
+    const openMenu = () => {
+        hamburger.classList.add('active');
+        navLinks.classList.add('active');
+        navLinks.style.display = 'flex';
     };
 
     const closeMenu = () => {
-        navLinks.classList.remove('active');
         hamburger.classList.remove('active');
-        navLinks.style.visibility = 'hidden';
-        navLinks.style.opacity = '0';
+        navLinks.classList.remove('active');
+        navLinks.style.display = 'none';
+    };
+
+    const toggleMenu = () => {
+        if (navLinks.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     };
 
     hamburger.addEventListener('click', (e) => {
@@ -41,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMenu();
     });
 
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (navLinks.classList.contains('active') && 
             !hamburger.contains(e.target) && 
@@ -49,11 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Close menu when clicking on a nav link
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
     });
 
-    window.addEventListener('resize', () => {
-        initializeMenuState();
-    });
+    // Handle window resize
+    const handleResize = () => {
+        if (window.innerWidth > 768) {
+            navLinks.style.display = 'flex';
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        } else if (!navLinks.classList.contains('active')) {
+            navLinks.style.display = 'none';
+        }
+    };
+
+    window.addEventListener('resize', handleResize);
+    // Initial state setup
+    handleResize();
 });
