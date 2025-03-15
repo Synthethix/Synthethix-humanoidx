@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Synthetix</title>
-    <link rel="icon" type="image/png" href="humanoidx.png">
+    <link rel="icon" type="image/png" href="/humanoidx.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -86,6 +86,67 @@
             padding: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #cbd5e1;
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.95);
+                padding: 20px;
+                gap: 20px;
+                text-align: center;
+                margin-left: 0;
+                padding-right: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 10px;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .nav-logo {
+                font-size: 1.2rem;
+            }
         }
 
         .dashboard-card:hover {
@@ -242,11 +303,55 @@
         @media screen and (max-width: 768px) {
             .dashboard-container {
                 margin-top: 80px;
-                padding: 15px;
+                padding: 10px;
             }
 
             .dashboard-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .dashboard-card[style*="grid-column"] {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+            }
+
+            .dashboard-card {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+
+            .card-header {
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-value {
+                font-size: 1.8rem;
+            }
+
+            .updates-container {
+                height: auto;
+                max-height: 400px;
+            }
+
+            .update-item {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .update-item h4 {
+                font-size: 1rem;
+            }
+
+            .update-item p {
+                font-size: 0.9rem;
             }
 
             .card-value {
@@ -262,12 +367,18 @@
 </head>
 <body>
     <nav>
-        <div class="nav-logo">HumanoidX</div>
+        <div class="nav-logo">HUMANOIDX</div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="nav-links">
-            <a href="index.html#home">Home</a>
+            <a href="index.html">Home</a>
             <a href="dashboard.html" class="active">Dashboard</a>
         </div>
     </nav>
+    <script src="mobile-nav.js"></script>
 
     <div class="dashboard-container">
         <h1>Dashboard</h1>
@@ -311,7 +422,7 @@
                 <div style="margin-top: 15px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                         <span style="color: white">Project Submission</span>
-                        <span style="color: white" class="countdown-value">00:00:00</span>
+                        <span style="color: white">00:30:00</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                         <span style="color: white">Presentation Round</span>
@@ -331,19 +442,27 @@
                 <div class="updates-container" style="height: 300px; overflow-y: auto; padding-right: 10px;">
                     <div class="update-section">
                         <h3 style="color: #6EE7B7; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(110, 231, 183, 0.2);">Current Events</h3>
-                        <div class="update-item announcement" style="padding: 10px;">
-                            <span class="update-time">Just now</span>
+                        <div class="update-item event">
                             <h4>Opening Ceremony</h4>
-                            <p>Main hall kickoff event</p>
+                            <p>Welcome address and problem statement reveal in the main auditorium</p>
+                        </div>
+                        <div class="update-item event">
+                            <h4>Team Formation</h4>
+                            <p>Team registration and mentor assignment completed</p>
                         </div>
                     </div>
 
                     <div class="update-section">
                         <h3 style="color: #3B82F6; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(59, 130, 246, 0.2);">Reminders</h3>
-                        <div class="update-item reminder" style="padding: 10px;">
-                            <span class="update-time">5 mins ago</span>
-                            <h4>Team Registration</h4>
-                            <p>Complete team profiles ASAP</p>
+                        <div class="update-item reminder">
+                            <span class="update-time">Important</span>
+                            <h4>Project Submission Deadline</h4>
+                            <p>Remember to submit your project before 2:00 PM</p>
+                        </div>
+                        <div class="update-item announcement">
+                            <span class="update-time">Announcement</span>
+                            <h4>Presentation Guidelines</h4>
+                            <p>Each team will have 10 minutes for presentation and 5 minutes for Q&A</p>
                         </div>
                     </div>
                 </div>
@@ -431,6 +550,54 @@
     <script src="countdown.js"></script>
     <script>
         // Add any dashboard-specific JavaScript here
+        function updateDeadlines() {
+            const now = new Date();
+
+            // Set event times (adjust these times according to your schedule)
+            const projectSubmission = new Date(now);
+            projectSubmission.setHours(14, 0, 0); // 2:00 PM
+
+            const presentationRound = new Date(now);
+            presentationRound.setHours(15, 0, 0); // 3:00 PM
+
+            const finalEvaluation = new Date(now);
+            finalEvaluation.setHours(18, 30, 0); // 6:30 PM
+
+            function formatTime(time) {
+                const hours = Math.floor(time / 3600);
+                const minutes = Math.floor((time % 3600) / 60);
+                const seconds = time % 60;
+                return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+
+            function updateTimer() {
+                const currentTime = new Date();
+
+                // Update Project Submission countdown
+                let submissionTimeLeft = Math.floor((projectSubmission - currentTime) / 1000);
+                if (submissionTimeLeft < 0) submissionTimeLeft = 0;
+                document.querySelector('.countdown-value').textContent = formatTime(submissionTimeLeft);
+
+                // Update Presentation Round countdown
+                let presentationTimeLeft = Math.floor((presentationRound - currentTime) / 1000);
+                if (presentationTimeLeft < 0) presentationTimeLeft = 0;
+                document.querySelectorAll('.countdown-value')[1].textContent = formatTime(presentationTimeLeft);
+
+                // Update Final Evaluation countdown
+                let evaluationTimeLeft = Math.floor((finalEvaluation - currentTime) / 1000);
+                if (evaluationTimeLeft < 0) evaluationTimeLeft = 0;
+                document.querySelectorAll('.countdown-value')[2].textContent = formatTime(evaluationTimeLeft);
+
+                // Schedule next update
+                requestAnimationFrame(updateTimer);
+            }
+
+            // Start the timer
+            updateTimer();
+        }
+
+        // Initialize the countdown when the page loads
+        document.addEventListener('DOMContentLoaded', updateDeadlines);
     </script>
 </body>
 </html>
