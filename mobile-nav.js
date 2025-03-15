@@ -10,26 +10,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure menu starts in closed state
     hamburger.classList.remove('active');
     navLinks.classList.remove('active');
-    navLinks.style.display = 'none';
+    navLinks.style.visibility = 'hidden';
+    navLinks.style.opacity = '0';
+    navLinks.style.transition = 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out';
 
-    const openMenu = () => {
-        hamburger.classList.add('active');
-        navLinks.classList.add('active');
-        navLinks.style.display = 'flex';
+    const toggleMenu = () => {
+        const isActive = navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active', isActive);
+        navLinks.style.visibility = isActive ? 'visible' : 'hidden';
+        navLinks.style.opacity = isActive ? '1' : '0';
     };
 
     const closeMenu = () => {
-        hamburger.classList.remove('active');
         navLinks.classList.remove('active');
-        navLinks.style.display = 'none';
-    };
-
-    const toggleMenu = () => {
-        if (navLinks.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        hamburger.classList.remove('active');
+        navLinks.style.visibility = 'hidden';
+        navLinks.style.opacity = '0';
     };
 
     hamburger.addEventListener('click', (e) => {
@@ -37,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMenu();
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (navLinks.classList.contains('active') && 
             !hamburger.contains(e.target) && 
@@ -46,21 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close menu when clicking on a nav link
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                closeMenu();
-            }
-        });
+        link.addEventListener('click', closeMenu);
     });
 
-    // Handle window resize
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            navLinks.style.display = 'flex';
+            navLinks.style.visibility = 'visible';
+            navLinks.style.opacity = '1';
         } else if (!navLinks.classList.contains('active')) {
-            navLinks.style.display = 'none';
+            navLinks.style.visibility = 'hidden';
+            navLinks.style.opacity = '0';
         }
     });
 });
