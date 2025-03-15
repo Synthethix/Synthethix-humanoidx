@@ -7,11 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Ensure menu starts in closed state
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('active');
-    navLinks.style.visibility = 'hidden';
-    navLinks.style.opacity = '0';
+    // Ensure menu starts in closed state based on screen width
+    const initializeMenuState = () => {
+        if (window.innerWidth > 768) {
+            navLinks.style.visibility = 'visible';
+            navLinks.style.opacity = '1';
+        } else {
+            navLinks.style.visibility = 'hidden';
+            navLinks.style.opacity = '0';
+        }
+    };
+
+    initializeMenuState(); // Initialize on page load
+
     navLinks.style.transition = 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out';
 
     const toggleMenu = () => {
@@ -46,12 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            navLinks.style.visibility = 'visible';
-            navLinks.style.opacity = '1';
-        } else if (!navLinks.classList.contains('active')) {
-            navLinks.style.visibility = 'hidden';
-            navLinks.style.opacity = '0';
-        }
+        initializeMenuState();
     });
 });
