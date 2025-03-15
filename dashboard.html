@@ -371,234 +371,175 @@
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-logo">HUMANOIDX</div>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html" class="active">Dashboard</a>
-        </div>
-    </nav>
-    <script src="mobile-nav.js"></script>
-
-    <div class="dashboard-container">
-        <h1>Dashboard</h1>
-        <div class="dashboard-grid">
-
-
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <span class="card-title">Time Until Hackathon</span>
-                    <i class="fas fa-hourglass-start card-icon"></i>
-                </div>
-                <div class="card-value pre-event-countdown">Loading...</div>
-                <p class="card-description">Until Synthetix hackathon begins</p>
-            </div>
-
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <span class="card-title">Prize Pool</span>
-                    <i class="fas fa-trophy card-icon"></i>
-                </div>
-                <div class="card-value">₹50K to 30K</div>
-                <p class="card-description">Total prize money for winners</p>
-            </div>
-        </div>
-
-        <div class="dashboard-grid">
-            <div class="dashboard-card" style="grid-column: 1 / span 2;">
-                <div class="card-header">
-                    <span class="card-title">Categories</span>
-                    <i class="fas fa-layer-group card-icon"></i>
-                </div>
-                <div class="card-value">3</div>
-                <p class="card-description">Programming, CAD, Electrical</p>
-            </div>
-
-            <div class="dashboard-card" style="grid-column: 1 / span 2;">
-                <div class="card-header">
-                    <span class="card-title">Upcoming Deadlines</span>
-                    <i class="fas fa-calendar-check card-icon"></i>
-                </div>
-                <div style="margin-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span style="color: white">Project Submission</span>
-                        <span style="color: white">00:30:00</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span style="color: white">Presentation Round</span>
-                        <span style="color: white">15:00:00</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span style="color: white">Final Evaluation</span>
-                        <span style="color: white">18:30:00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="dashboard-card live-updates-card" style="grid-column: 3 / span 1; grid-row: 1 / span 3;">
-                <div class="card-header">
-                    <span class="card-title">Live Updates</span>
-                    <i class="fas fa-bell card-icon"></i>
-                </div>
-                <div class="updates-container" style="height: 300px; overflow-y: auto; padding-right: 10px;">
-                    <div class="update-section">
-                        <h3 style="color: #6EE7B7; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(110, 231, 183, 0.2);">Current Events</h3>
-                        <div class="update-item event">
-                            <h4>Opening Ceremony</h4>
-                            <p>Welcome address and problem statement reveal in the main auditorium</p>
-                        </div>
-                        <div class="update-item event">
-                            <h4>Team Formation</h4>
-                            <p>Team registration and mentor assignment completed</p>
-                        </div>
-                    </div>
-
-                    <div class="update-section">
-                        <h3 style="color: #3B82F6; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(59, 130, 246, 0.2);">Reminders</h3>
-                        <div class="update-item reminder">
-                            <span class="update-time">Important</span>
-                            <h4>Project Submission Deadline</h4>
-                            <p>Remember to submit your project before 2:00 PM</p>
-                        </div>
-                        <div class="update-item announcement">
-                            <span class="update-time">Announcement</span>
-                            <h4>Presentation Guidelines</h4>
-                            <p>Each team will have 10 minutes for presentation and 5 minutes for Q&A</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard-grid" style="margin-top: 20px;">
-            <div class="dashboard-card" style="grid-column: span 2;">
-                <div class="card-header">
-                    <span class="card-title">Project Submission</span>
-                    <i class="fas fa-upload card-icon"></i>
-                </div>
-                <div style="margin-top: 15px;">
-                    <h3 style="color: #6EE7B7; margin-bottom: 15px;">Submission Requirements</h3>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
-                        <li style="margin-bottom: 10px;"><i class="fas fa-users" style="color: #3B82F6; margin-right: 10px;"></i>Team Information: Include team name and all team members' details</li>
-                        <li style="margin-bottom: 10px;"><i class="fas fa-lightbulb" style="color: #3B82F6; margin-right: 10px;"></i>Problem Statement: Clearly specify your chosen problem statement and category</li>
-                        <li style="margin-bottom: 10px;"><i class="fas fa-code" style="color: #3B82F6; margin-right: 10px;"></i>Project Repository: Submit the source code/ CAD design/ circuit diagram file</li>
-                        <li style="margin-bottom: 10px;"><i class="fas fa-book" style="color: #3B82F6; margin-right: 10px;"></i>Documentation: Include a detailed pdf explain project features</li>
-                    </ul>
-                    <div style="margin-bottom: 20px;">
-                        <label for="team-select" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Select Your Team<span id="team-required" style="color: #EF4444;">*</span></label>
-                        <select id="team-select" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#6EE7B7'" onmouseout="this.style.borderColor='#3B82F6'" required>
+     <nav>
+         <div class="nav-logo">HumanoidX</div>
+         <div class="nav-links">
+             <a href="index.html#home">Home</a>
+             <a href="dashboard.html" class="active">Dashboard</a>
+         </div>
+     </nav>
+ 
+     <div class="dashboard-container">
+         <h1>Dashboard</h1>
+         <div class="dashboard-grid">
+ 
+ 
+             <div class="dashboard-card">
+                 <div class="card-header">
+                     <span class="card-title">Time Until Hackathon</span>
+                     <i class="fas fa-hourglass-start card-icon"></i>
+                 </div>
+                 <div class="card-value pre-event-countdown">Loading...</div>
+                 <p class="card-description">Until Synthetix hackathon begins</p>
+             </div>
+ 
+             <div class="dashboard-card">
+                 <div class="card-header">
+                     <span class="card-title">Prize Pool</span>
+                     <i class="fas fa-trophy card-icon"></i>
+                 </div>
+                 <div class="card-value">₹50K</div>
+                 <div class="card-value">₹25K</div>
+                 <p class="card-description">Total prize money for winners</p>
+             </div>
+         </div>
+ 
+         <div class="dashboard-grid">
+             <div class="dashboard-card" style="grid-column: 1 / span 2;">
+                 <div class="card-header">
+                     <span class="card-title">Categories</span>
+                     <i class="fas fa-layer-group card-icon"></i>
+                 </div>
+                 <div class="card-value">3</div>
+                 <p class="card-description">Programming, CAD, Electrical</p>
+             </div>
+ 
+             <div class="dashboard-card" style="grid-column: 1 / span 2;">
+                 <div class="card-header">
+                     <span class="card-title">Upcoming Deadlines</span>
+                     <i class="fas fa-calendar-check card-icon"></i>
+                 </div>
+                 <div style="margin-top: 15px;">
+                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                         <span style="color: white">Project Submission</span>
+                         <span style="color: white" class="countdown-value">00:00:00</span>
+                     </div>
+                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                         <span style="color: white">Presentation Round</span>
+                         <span style="color: white">15:00:00</span>
+                     </div>
+                     <div style="display: flex; justify-content: space-between;">
+                         <span style="color: white">Final Evaluation</span>
+                         <span style="color: white">18:30:00</span>
+                     </div>
+                 </div>
+             </div>
+             <div class="dashboard-card live-updates-card" style="grid-column: 3 / span 1; grid-row: 1 / span 3;">
+                 <div class="card-header">
+                     <span class="card-title">Live Updates</span>
+                     <i class="fas fa-bell card-icon"></i>
+                 </div>
+                 <div class="updates-container" style="height: 300px; overflow-y: auto; padding-right: 10px;">
+                     <div class="update-section">
+                         <h3 style="color: #6EE7B7; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(110, 231, 183, 0.2);">Current Events</h3>
+                         <div class="update-item announcement" style="padding: 10px;">
+                             <span class="update-time">Just now</span>
+                             <h4>Opening Ceremony</h4>
+                             <p>Main hall kickoff event</p>
+                         </div>
+                     </div>
+ 
+                     <div class="update-section">
+                         <h3 style="color: #3B82F6; font-size: 0.9rem; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(59, 130, 246, 0.2);">Reminders</h3>
+                         <div class="update-item reminder" style="padding: 10px;">
+                             <span class="update-time">5 mins ago</span>
+                             <h4>Team Registration</h4>
+                             <p>Complete team profiles ASAP</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+ 
+         <div class="dashboard-grid" style="margin-top: 20px;">
+             <div class="dashboard-card" style="grid-column: span 2;">
+                 <div class="card-header">
+                     <span class="card-title">Project Submission</span>
+                     <i class="fas fa-upload card-icon"></i>
+                 </div>
+                 <div style="margin-top: 15px;">
+                     <h3 style="color: #6EE7B7; margin-bottom: 15px;">Submission Requirements</h3>
+                     <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                         <li style="margin-bottom: 10px;"><i class="fas fa-users" style="color: #3B82F6; margin-right: 10px;"></i>Team Information: Include team name and all team members' details</li>
+                         <li style="margin-bottom: 10px;"><i class="fas fa-lightbulb" style="color: #3B82F6; margin-right: 10px;"></i>Problem Statement: Clearly specify your chosen problem statement and category</li>
+                         <li style="margin-bottom: 10px;"><i class="fas fa-code" style="color: #3B82F6; margin-right: 10px;"></i>Project Repository: Submit the source code/ CAD design/ circuit diagram file</li>
+                         <li style="margin-bottom: 10px;"><i class="fas fa-book" style="color: #3B82F6; margin-right: 10px;"></i>Documentation: Include a detailed pdf explain project features</li>
+                     </ul>
+                     <div style="margin-bottom: 20px;">
+                         <label for="team-select" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Select Your Team<span id="team-required" style="color: #EF4444;">*</span></label>
+                         <select id="team-select" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#6EE7B7'" onmouseout="this.style.borderColor='#3B82F6'" required>
                              <option value="" disabled selected>Choose your team...</option>
                          </select>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <label for="submissionUrl" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Submission URL<span id="url-required" style="color: #EF4444;">*</span></label>
-                        <input type="url" id="submissionUrl" name="submissionUrl" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; margin-bottom: 20px;" required placeholder="Enter your submission URL">
-                    </div>
-                    <button id="submit-project" style="display: inline-block; padding: 12px 30px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); border: none; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; opacity: 0.6;" disabled>
-                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Project
-                    </button>
-                    <script>
-                        const teamSelect = document.getElementById('team-select');
-                        const submitButton = document.getElementById('submit-project');
-                        const submissionUrl = document.getElementById('submissionUrl');
-                        const teamRequired = document.getElementById('team-required');
-                        const urlRequired = document.getElementById('url-required');
-
-                        function validateForm() {
-                            const hasTeam = teamSelect.value !== '';
-                            const hasUrl = submissionUrl.value.trim() !== '';
-
-                            teamRequired.style.display = hasTeam ? 'none' : 'inline';
-                            urlRequired.style.display = hasUrl ? 'none' : 'inline';
-
-                            if (hasTeam && hasUrl) {
-                                submitButton.style.opacity = '1';
-                                submitButton.style.cursor = 'pointer';
-                                submitButton.disabled = false;
-                            } else {
-                                submitButton.style.opacity = '0.6';
-                                submitButton.style.cursor = 'not-allowed';
-                                submitButton.disabled = true;
-                            }
-                        }
-
-                        teamSelect.addEventListener('change', validateForm);
-                        submissionUrl.addEventListener('input', validateForm);
-
-                        submitButton.addEventListener('mouseover', function() {
-                            if (!this.disabled) {
-                                this.style.transform = 'translateY(-2px)';
-                                this.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.4)';
-                            }
-                        });
-
-                        submitButton.addEventListener('mouseout', function() {
-                            this.style.transform = 'translateY(0)';
-                            this.style.boxShadow = 'none';
-                        });
-                    </script>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="countdown.js"></script>
-    <script>
-        // Add any dashboard-specific JavaScript here
-        function updateDeadlines() {
-            const now = new Date();
-
-            // Set event times (adjust these times according to your schedule)
-            const projectSubmission = new Date(now);
-            projectSubmission.setHours(14, 0, 0); // 2:00 PM
-
-            const presentationRound = new Date(now);
-            presentationRound.setHours(15, 0, 0); // 3:00 PM
-
-            const finalEvaluation = new Date(now);
-            finalEvaluation.setHours(18, 30, 0); // 6:30 PM
-
-            function formatTime(time) {
-                const hours = Math.floor(time / 3600);
-                const minutes = Math.floor((time % 3600) / 60);
-                const seconds = time % 60;
-                return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-
-            function updateTimer() {
-                const currentTime = new Date();
-
-                // Update Project Submission countdown
-                let submissionTimeLeft = Math.floor((projectSubmission - currentTime) / 1000);
-                if (submissionTimeLeft < 0) submissionTimeLeft = 0;
-                document.querySelector('.countdown-value').textContent = formatTime(submissionTimeLeft);
-
-                // Update Presentation Round countdown
-                let presentationTimeLeft = Math.floor((presentationRound - currentTime) / 1000);
-                if (presentationTimeLeft < 0) presentationTimeLeft = 0;
-                document.querySelectorAll('.countdown-value')[1].textContent = formatTime(presentationTimeLeft);
-
-                // Update Final Evaluation countdown
-                let evaluationTimeLeft = Math.floor((finalEvaluation - currentTime) / 1000);
-                if (evaluationTimeLeft < 0) evaluationTimeLeft = 0;
-                document.querySelectorAll('.countdown-value')[2].textContent = formatTime(evaluationTimeLeft);
-
-                // Schedule next update
-                requestAnimationFrame(updateTimer);
-            }
-
-            // Start the timer
-            updateTimer();
-        }
-
-        // Initialize the countdown when the page loads
-        document.addEventListener('DOMContentLoaded', updateDeadlines);
-    </script>
-    <script src="submission.js"></script>
-</body>
+                     </div>
+                     <form id="submission">
+                     <div style="margin-bottom: 20px;">
+                         <label for="submissionUrl" style="display: block; color: #6EE7B7; margin-bottom: 10px; font-weight: 600;">Submission URL<span id="url-required" style="color: #EF4444;">*</span></label>
+                         <input type="url" id="submissionUrl" name="submissionUrl" style="width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.95); color: white; border: 2px solid #3B82F6; border-radius: 8px; font-size: 1rem; margin-bottom: 20px;" required placeholder="Enter your submission URL">
+                     </div>
+                     <button id="submit-project" style="display: inline-block; padding: 12px 30px; background: linear-gradient(90deg, #6EE7B7, #3B82F6); border: none; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; opacity: 0.6;">
+                         <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Project
+                     </button>
+                     </form>
+                     <script>
+                         const teamSelect = document.getElementById('team-select');
+                         const submitButton = document.getElementById('submit-project');
+                         const submissionUrl = document.getElementById('submissionUrl');
+                         const teamRequired = document.getElementById('team-required');
+                         const urlRequired = document.getElementById('url-required');
+ 
+                         function validateForm() {
+                             const hasTeam = teamSelect.value !== '';
+                             const hasUrl = submissionUrl.value.trim() !== '';
+ 
+                             teamRequired.style.display = hasTeam ? 'none' : 'inline';
+                             urlRequired.style.display = hasUrl ? 'none' : 'inline';
+ 
+                             if (hasTeam && hasUrl) {
+                                 submitButton.style.opacity = '1';
+                                 submitButton.style.cursor = 'pointer';
+                                 submitButton.disabled = false;
+                             } else {
+                                 submitButton.style.opacity = '0.6';
+                                 submitButton.style.cursor = 'not-allowed';
+                                 submitButton.disabled = true;
+                             }
+                         }
+ 
+                         teamSelect.addEventListener('change', validateForm);
+                         submissionUrl.addEventListener('input', validateForm);
+ 
+                         submitButton.addEventListener('mouseover', function() {
+                             if (!this.disabled) {
+                                 this.style.transform = 'translateY(-2px)';
+                                 this.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.4)';
+                             }
+                         });
+ 
+                         submitButton.addEventListener('mouseout', function() {
+                             this.style.transform = 'translateY(0)';
+                             this.style.boxShadow = 'none';
+                         });
+                     </script>
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script src="countdown.js"></script>
+     <script src="submission.js"></script>
+     <script>
+         // Add any dashboard-specific JavaScript here
+     </script>
+ </body>
 </html>
